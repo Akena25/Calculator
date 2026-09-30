@@ -266,6 +266,7 @@
             memory.TabIndex = 18;
             memory.Text = "М";
             memory.UseVisualStyleBackColor = true;
+            memory.Click += memory_Click;
             // 
             // Form1
             // 

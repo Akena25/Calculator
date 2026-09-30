@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using System.Collections.Generic;
 
 namespace WinFormsApp1
 {
@@ -7,6 +8,8 @@ namespace WinFormsApp1
         double firstNumber = 0;
         string operation = "";
         bool newNumber = true;
+
+        List<string> history = new List<string>();
 
         public Form1()
         {
@@ -64,7 +67,7 @@ namespace WinFormsApp1
             Button button = (Button)sender;
 
             firstNumber = double.Parse(label1.Text);
-            operation = "*";
+            operation = "х";
             newNumber = true;
 
             label1.Text += button.Text;
@@ -96,7 +99,7 @@ namespace WinFormsApp1
                     result = firstNumber - secondNumber;
                     break;
 
-                case "*":
+                case "х":
                     result = firstNumber * secondNumber;
                     break;
 
@@ -110,6 +113,8 @@ namespace WinFormsApp1
                     result = firstNumber / secondNumber;
                     break;
             }
+
+            history.Add(firstNumber + " " + operation + " " + secondNumber + " = " + result); // Добавляем вычисление в историю
 
             label1.Text = result.ToString();
             newNumber = true;
@@ -131,6 +136,12 @@ namespace WinFormsApp1
             operation = ",";
 
             label1.Text += button.Text;
-        } 
+        }
+
+        private void memory_Click(object sender, EventArgs e)
+        {
+            Form2 historyForm = new Form2(history);
+            historyForm.ShowDialog();
+        }
     }
 }
