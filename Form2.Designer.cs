@@ -48,7 +48,7 @@
             Controls.Add(listBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form2";
-            Text = "Form2";
+            Text = "История";
             ResumeLayout(false);
         }
 

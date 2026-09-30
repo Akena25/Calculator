@@ -48,6 +48,7 @@
             drob = new Button();
             label1 = new Label();
             memory = new Button();
+            tema = new Button();
             SuspendLayout();
             // 
             // plus
@@ -268,11 +269,24 @@
             memory.UseVisualStyleBackColor = true;
             memory.Click += memory_Click;
             // 
+            // tema
+            // 
+            tema.BackColor = SystemColors.Control;
+            tema.BackgroundImageLayout = ImageLayout.Zoom;
+            tema.Font = new Font("Segoe UI", 16F);
+            tema.Location = new Point(209, 365);
+            tema.Name = "tema";
+            tema.Size = new Size(50, 47);
+            tema.TabIndex = 19;
+            tema.UseVisualStyleBackColor = false;
+            tema.Click += tema_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(271, 497);
+            Controls.Add(tema);
             Controls.Add(memory);
             Controls.Add(label1);
             Controls.Add(drob);
@@ -319,5 +333,6 @@
         private Button drob;
         private Label label1;
         private Button memory;
+        private Button tema;
     }
 }

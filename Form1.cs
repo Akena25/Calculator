@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace WinFormsApp1
 {
@@ -11,6 +12,7 @@ namespace WinFormsApp1
 
         List<string> history = new List<string>();
 
+        bool darkTheme = false;
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +27,24 @@ namespace WinFormsApp1
             eight.Click += Number_Click;
             nine.Click += Number_Click;
             zero.Click += Number_Click;
+
+            this.Shown += Form1_Shown;
+        }
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            BeginInvoke(new Action(() =>
+            {
+                tema.Image = new Bitmap(
+                    Properties.Resources.luna,
+                    new Size(30, 30)
+                );
+
+                tema.Text = "";
+                tema.ImageAlign = ContentAlignment.MiddleCenter;
+
+                tema.Invalidate();
+                tema.Update();
+            }));
         }
 
         private void Number_Click(object? sender, EventArgs e)
@@ -142,6 +162,56 @@ namespace WinFormsApp1
         {
             Form2 historyForm = new Form2(history);
             historyForm.ShowDialog();
+        }
+
+        private void tema_Click(object sender, EventArgs e)
+        {
+            darkTheme = !darkTheme;
+
+            if (darkTheme)
+            {
+                // Тёмная тема
+                this.BackColor = Color.FromArgb(30, 30, 30);
+
+                label1.BackColor = Color.FromArgb(45, 45, 45);
+                label1.ForeColor = Color.White;
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is Button button)
+                    {
+                        button.BackColor = Color.FromArgb(60, 60, 60);
+                        button.ForeColor = Color.White;
+                        button.FlatStyle = FlatStyle.Flat;
+                    }
+                }
+
+                tema.Image = new Bitmap(Properties.Resources.sun, new Size(30, 30));
+            }
+            else
+            {
+                // Светлая тема
+                this.BackColor = SystemColors.Control;
+
+                label1.BackColor = Color.White;
+                label1.ForeColor = Color.Black;
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is Button button)
+                    {
+                        button.BackColor = SystemColors.Control;
+                        button.ForeColor = Color.Black;
+                        button.FlatStyle = FlatStyle.Standard;
+                    }
+                }
+                tema.Image = new Bitmap(Properties.Resources.luna, new Size(30, 30));
+            }
+
+            tema.Text = "";
+            tema.ImageAlign = ContentAlignment.MiddleCenter;
+
+            tema.Invalidate();
         }
     }
 }
